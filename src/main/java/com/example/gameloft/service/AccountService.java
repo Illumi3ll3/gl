@@ -4,8 +4,6 @@ import com.example.gameloft.model.Account;
 import com.example.gameloft.model.Campaign;
 import com.example.gameloft.repo.AccountRepository;
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +11,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
+
 @Component
 public class AccountService {
     @Autowired
@@ -36,6 +36,19 @@ public class AccountService {
         try {
             JsonNode jsonNode = objectMapper.readTree(campaign.getMatchers());
             System.out.println(jsonNode.get("level").asText());
+            if(jsonNode.get("level").get("min").asInt()<account.getLevel())
+                return false;
+            if(jsonNode.get("level").get("max").asInt()>account.getLevel())
+                return false;
+            AtomicReference<Boolean> hasCountry= new AtomicReference<>(false);
+            jsonNode.get("has").get("country").fieldNames().forEachRemaining(e->{
+                hasCountry.set(hasCountry.get() ? hasCountry.get() : e.equals(account.getCountry()));
+            });
+            if(!hasCountry.get())
+                return false;
+
+            if(!hasCountry.get())
+                return false;
         }catch (Exception e){
 
         }
