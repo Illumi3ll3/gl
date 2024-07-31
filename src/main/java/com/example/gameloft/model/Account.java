@@ -24,8 +24,6 @@ public class Account {
     Double totalSpent;
     @Column(name = "TOTALREFUND")
     Double totalRefund;
-    /*@Column(name = "TOTALTRANSACTIONS")
-    Integer totalTransactions;*/
     Timestamp lastPurchase;
     @Column(name = "ACTIVE_CAMPAIGNS")
     String activeCampaignsString;
@@ -108,13 +106,6 @@ public class Account {
         this.totalRefund = totalRefund;
     }
 
-   /* public Integer getTotalTransactions() {
-        return totalTransactions;
-    }
-
-    public void setTotalTransactions(Integer totalTransactions) {
-        this.totalTransactions = totalTransactions;
-    }*/
 
     public Timestamp getLastPurchase() {
         return lastPurchase;
@@ -131,15 +122,7 @@ public class Account {
     public void setActiveCampaigns(List<Campaign> activeCampaigns) {
         this.activeCampaigns = activeCampaigns;
     }
-/*
-    public List<Device> getDevices() {
-        return devices;
-    }
 
-    public void setDevices(List<Device> devices) {
-        this.devices = devices;
-    }
-*/
     public Integer getLevel() {
         return level;
     }

@@ -47,9 +47,7 @@ public class AccountService {
     private void updateActiveCampaignForAccount(Account account) {
         try {
             List<String> names = new ArrayList<>();
-            account.getActiveCampaigns().forEach(e -> {
-                names.add(e.getName());
-            });
+            account.getActiveCampaigns().forEach(e -> names.add(e.getName()));
             account.setActiveCampaignsString(objectMapper.writeValueAsString(names));
             accountRepository.save(account);
         } catch (JsonProcessingException e) {

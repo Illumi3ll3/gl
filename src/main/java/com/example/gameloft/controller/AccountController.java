@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class AccountController {
     @Autowired
     AccountService service;
-    @GetMapping(value = "/{id}")
-    public Account findById(@PathVariable("id") Integer id) {
+    @GetMapping(value = "/get_client_config/{player_id}")
+    public Account findById(@PathVariable("player_id") Integer id) {
 
         return service.findById(id);
     }
