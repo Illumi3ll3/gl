@@ -10,7 +10,8 @@ public class CampaignService {
         List<Campaign> campaigns=new ArrayList<>();
         Campaign c=new Campaign();
         c.setId(1);
-        c.setMatchers("{\"level\": {\"min\": 1,\"max\": 3 },\"has\": {\"country\": [\"US\",\"RO\",\"CA\"],\"items\": [\"item_1\"] },\"does_not_have\": {\"items\": [\"item_4\"] }}");
+        c.setMatchers("{\"level\": {\"min\": 1,\"max\": 3 },\"has\": {\"country\": [\"US\",\"RO\",\"CA\",\"r\"],\"items\": [\"item_1\"] },\"does_not_have\": {\"items\": [\"item_4\"] }}");
+        c.setName("test");
         campaigns.add(c);
         return campaigns;
     }

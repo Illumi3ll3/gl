@@ -5,7 +5,10 @@ import jakarta.persistence.*;
 import java.sql.Timestamp;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 @Entity
 public class Account {
     @Id
@@ -24,6 +27,8 @@ public class Account {
     /*@Column(name = "TOTALTRANSACTIONS")
     Integer totalTransactions;*/
     Timestamp lastPurchase;
+    @Column(name = "ACTIVE_CAMPAIGNS")
+    String activeCampaignsString;
     @Transient
     List<Campaign> activeCampaigns=new ArrayList<>();
    // List<Device> devices;
@@ -34,6 +39,10 @@ public class Account {
     String language;
     Timestamp birthdate;
     String gender;
+    @Transient
+    Map<String,Integer> inventory=new HashMap<>();
+@Column(name = "INVENTORY")
+    String inventoryString;
 
     public Integer getId() {
         return id;
@@ -185,5 +194,29 @@ public class Account {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public Map<String, Integer> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Map<String, Integer> inventory) {
+        this.inventory = inventory;
+    }
+
+    public String getInventoryString() {
+        return inventoryString;
+    }
+
+    public void setInventoryString(String inventoryString) {
+        this.inventoryString = inventoryString;
+    }
+
+    public String getActiveCampaignsString() {
+        return activeCampaignsString;
+    }
+
+    public void setActiveCampaignsString(String activeCampaignsString) {
+        this.activeCampaignsString = activeCampaignsString;
     }
 }
